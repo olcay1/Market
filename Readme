@@ -1,16 +1,14 @@
 Market Otomasyonu
 -----------------
-1.Aþama
+1.Ürün Yönetimi
 ürün ekleme
 ürün silme
 ürün listeleme
-ürün arama
+ürün fiyat deðiþtirme
 
-2.Aþama
-Satýþ ekraný
+2.Müþteri Yönetimi
+müþteri ekleme
+müþteri silme
+müþteri listeleme
 
-3.Aþama
-Stok yönetimi (Ürün stok ekleme)
-
-4
-
+3.Müþteriye ürün ekleme
