@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class MusteriYonetimi {
 
 	MysqlConnect mc = new MysqlConnect();
+
 	Scanner scanner = new Scanner(System.in);
 
 	public int secim(int sec) {

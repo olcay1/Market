@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class satisYonetimi {
 
 	MysqlConnect mc = new MysqlConnect();
+
 	Scanner scanner = new Scanner(System.in);
 
 	private int urunId;

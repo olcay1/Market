@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class UrunYonetimi {
 
 	MysqlConnect mc = new MysqlConnect();
+
 	Scanner scanner = new Scanner(System.in);
 
 	private int id;
@@ -126,14 +127,18 @@ public class UrunYonetimi {
 	}
 
 	public void fiyatGuncelle() {
-		System.out.print("ürün Id: ");
-		id = scanner.nextInt();
+		try {
+			System.out.print("ürün Id: ");
+			id = scanner.nextInt();
 
-		System.out.print("Yeni Fiyatý: ");
-		fiyat = scanner.nextFloat();
-		fiyatGuncelle(id, fiyat);
+			System.out.print("Yeni Fiyatý: ");
+			fiyat = scanner.nextFloat();
+			fiyatGuncelle(id, fiyat);
 
-		System.out.println("Fiyat güncellendi");
+			System.out.println("Fiyat güncellendi");
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 
 	}
 
@@ -175,7 +180,7 @@ public class UrunYonetimi {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 

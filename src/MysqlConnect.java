@@ -12,7 +12,7 @@ public class MysqlConnect {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		return con;
 

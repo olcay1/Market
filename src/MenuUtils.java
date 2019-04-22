@@ -33,6 +33,8 @@ public class MenuUtils {
 
 				menuSecim();
 			case 4:
+				System.out.println("YÝNE BEKLERÝZ");
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Geçerli bir seçim yapýnýz");
@@ -46,15 +48,15 @@ public class MenuUtils {
 
 	public static void anaMenuYazdir() {
 		System.out.println();
-		System.out.println("***************************");
-		System.out.println("**** Market Otomasyonu ****");
-		System.out.println("***************************");
-		System.out.println("--------------");
+		System.out.println("*******************************************");
+		System.out.println("**** M A R K E T   O T O M A S Y O N U ****");
+		System.out.println("*******************************************");
+		System.out.println("------------------");
 		System.out.println("1.Ürün Yönetimi");
 		System.out.println("2.Müþteri Yönetimi");
 		System.out.println("3.Satýþ Yönetimi");
 		System.out.println("4.Çýkýþ");
-		System.out.println("--------------");
+		System.out.println("------------------");
 		System.out.print("Seçiminiz:");
 	}
 
@@ -62,13 +64,13 @@ public class MenuUtils {
 		System.out.println();
 
 		System.out.println("**** Ürün Yönetimi ****");
-		System.out.println("--------------");
+		System.out.println("----------------");
 		System.out.println("1.Listele");
 		System.out.println("2.Ekle");
 		System.out.println("3.Fiyat Güncelle");
 		System.out.println("4.Sil");
 		System.out.println("5.Ana Menü");
-		System.out.println("--------------");
+		System.out.println("----------------");
 		System.out.print("Seçiminiz:");
 
 	}
@@ -90,12 +92,12 @@ public class MenuUtils {
 	public static void satisYonetimi() {
 
 		System.out.println("**** Satýþ Yönetimi ****");
-		System.out.println("--------------");
+		System.out.println("------------------");
 		System.out.println("1.Listele");
 		System.out.println("2.Ekle");
 		System.out.println("3.Müþteri Ürünleri");
 		System.out.println("4.Ana Menü");
-		System.out.println("--------------");
+		System.out.println("------------------");
 		System.out.print("Seçiminiz:");
 
 	}
