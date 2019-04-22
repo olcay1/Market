@@ -26,7 +26,7 @@ müþteri listeleme
 urunler
 	urun_id
 	urun_ad
-	urun_fiyat
+	urun_fiyat-+
   PRIMARY KEY urun_id
   
 musteriler

@@ -26,12 +26,14 @@ CREATE TABLE `musteri_urun` (
   `musteri_urun_id` int(11) NOT NULL AUTO_INCREMENT,
   `musteri_id` int(11) DEFAULT NULL,
   `urun_id` int(11) DEFAULT NULL,
+  `urun_fiyat` decimal(4,2) DEFAULT NULL,
+  `fis_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`musteri_urun_id`),
   KEY `fk_musteri_urun` (`urun_id`),
   KEY `fk_musteri_urun_musteri` (`musteri_id`),
   CONSTRAINT `fk_musteri_urun` FOREIGN KEY (`urun_id`) REFERENCES `urunler` (`urun_id`),
   CONSTRAINT `fk_musteri_urun_musteri` FOREIGN KEY (`musteri_id`) REFERENCES `musteriler` (`musteri_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +42,7 @@ CREATE TABLE `musteri_urun` (
 
 LOCK TABLES `musteri_urun` WRITE;
 /*!40000 ALTER TABLE `musteri_urun` DISABLE KEYS */;
-INSERT INTO `musteri_urun` VALUES (1,1,1),(2,1,2),(3,1,3),(4,2,1),(5,2,2),(6,3,4);
+INSERT INTO `musteri_urun` VALUES (1,1,1,2.00,1),(2,1,2,2.00,2),(3,1,3,2.00,3),(4,2,1,3.00,1),(5,2,2,2.00,2),(6,3,4,1.00,1),(7,2,3,5.59,2000);
 /*!40000 ALTER TABLE `musteri_urun` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +57,7 @@ CREATE TABLE `musteriler` (
   `musteri_id` int(11) NOT NULL AUTO_INCREMENT,
   `isim` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`musteri_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +66,7 @@ CREATE TABLE `musteriler` (
 
 LOCK TABLES `musteriler` WRITE;
 /*!40000 ALTER TABLE `musteriler` DISABLE KEYS */;
-INSERT INTO `musteriler` VALUES (1,'ali'),(2,'veli'),(3,'ahmet'),(4,'mehmet');
+INSERT INTO `musteriler` VALUES (1,'Ali'),(2,'VELİ'),(3,'ahmet'),(4,'mehmet'),(5,'mahmut');
 /*!40000 ALTER TABLE `musteriler` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,13 +91,9 @@ CREATE TABLE `urunler` (
 
 LOCK TABLES `urunler` WRITE;
 /*!40000 ALTER TABLE `urunler` DISABLE KEYS */;
-INSERT INTO `urunler` VALUES (1,'cola',2.00),(2,'ekmek',2.34),(3,'fanta',5.59),(4,'gofret',1.00),(5,'cikolata',5.00),(6,'cay',8.00),(7,'salca',10.55),(8,'alo',4.00),(9,'omo',2.00),(10,'pril',4.00);
+INSERT INTO `urunler` VALUES (1,'cola',3.00),(2,'ekmek',2.34),(3,'fanta',5.59),(4,'gofret',1.00),(5,'cikolata',5.00),(6,'cay',8.00),(7,'salca',10.55),(8,'alo',4.00),(9,'omo',2.00),(10,'pril',4.00);
 /*!40000 ALTER TABLE `urunler` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'market'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -106,4 +104,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-20 22:56:07
+-- Dump completed on 2019-04-22 13:33:40

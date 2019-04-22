@@ -5,8 +5,6 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class UrunYonetimi {
-	
-	
 
 	MysqlConnect mc = new MysqlConnect();
 	Scanner scanner = new Scanner(System.in);
@@ -19,13 +17,12 @@ public class UrunYonetimi {
 		if (sec == 1) {
 			listele();
 		} else if (sec == 2) {
-			
+
 			urunEkle();
 			urunEkle(ad, fiyat);
-		}
-else if (sec == 3) {
-			
-	listele();
+		} else if (sec == 3) {
+
+			listele();
 			fiyatGuncelle();
 		}
 		return sec;
@@ -57,25 +54,22 @@ else if (sec == 3) {
 	}
 
 	public void listele() {
-		
-
 
 		try {
 			// Class.forName("com.mysql.cj.jdbc.Driver");
-			
 
 			Statement stmt = mc.baglan().createStatement();
 			System.out.println("------------------------------------------");
-			System.out.format("|%2s| %10s |%9s |","ID","ADI","FÝYATI");
+			System.out.format("|%2s| %10s |%9s |", "ID", "ADI", "FÝYATI");
 			System.out.println();
 			System.out.println("------------------------------------------");
-			
+
 			ResultSet rs = stmt.executeQuery("select * from urunler");
 			while (rs.next()) {
 				int urunId = rs.getInt(1);
 				String urunAdi = rs.getString(2);
 				float urunFiyat = rs.getFloat(3);
-				System.out.format("|%2s| %10s |%9s|",urunId,urunAdi,urunFiyat);
+				System.out.format("|%2s| %10s |%9s|", urunId, urunAdi, urunFiyat);
 
 				System.out.println();
 			}
@@ -91,26 +85,55 @@ else if (sec == 3) {
 			}
 		}
 	}
-	
-	
+
+	public void urunDetay(int id) {
+
+		try {
+			// Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Statement stmt = mc.baglan().createStatement();
+
+			ResultSet rs = stmt.executeQuery("select * from urunler ");
+			while (rs.next()) {
+
+				int urunId = rs.getInt(1);
+				if (urunId == id) {
+					setAd(rs.getString(2));
+					setFiyat(rs.getFloat(3));
+
+				}
+
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				mc.baglan().close();
+			} catch (SQLException e) {
+				System.out.println("Hata oluþtu." + e.getMessage());
+			}
+		}
+	}
+
 	public void urunEkle() {
 		System.out.print("ürün adý: ");
-		ad=scanner.next();
+		ad = scanner.next();
 		System.out.print("ürün fiyatý: ");
-		fiyat=scanner.nextFloat();
+		fiyat = scanner.nextFloat();
 		urunEkle(ad, fiyat);
-		
+
 	}
-	
+
 	public void fiyatGuncelle() {
 		System.out.print("ürün Id: ");
-		id=scanner.nextInt();
+		id = scanner.nextInt();
 		System.out.print("Yeni Fiyatý: ");
-		fiyat=scanner.nextFloat();
+		fiyat = scanner.nextFloat();
 		fiyatGuncelle(id, fiyat);
-		
+
 	}
-	
+
 	public void urunEkle(String ad, float fiyat) {
 		this.setAd(ad);
 		this.setFiyat(fiyat);
@@ -132,13 +155,14 @@ else if (sec == 3) {
 			e.printStackTrace();
 		}
 	}
-	public void fiyatGuncelle(int id,float fiyat) {
+
+	public void fiyatGuncelle(int id, float fiyat) {
 		try {
-			
+
 			String sorgu = "UPDATE urunler SET urun_fiyat =? WHERE urun_id =?";
 			PreparedStatement prepareStatement = mc.baglan().prepareStatement(sorgu);
-			
-			prepareStatement.setInt(2, id);		
+
+			prepareStatement.setInt(2, id);
 
 			prepareStatement.setFloat(1, fiyat);
 
@@ -151,5 +175,5 @@ else if (sec == 3) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
