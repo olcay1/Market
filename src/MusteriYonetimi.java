@@ -20,7 +20,7 @@ public class MusteriYonetimi {
 		} else if (sec == 3) {
 
 			listele(0);
-			isimGuncelle();
+			isimGuncelle(id, ad);
 
 		}
 		return sec;
@@ -43,6 +43,7 @@ public class MusteriYonetimi {
 	}
 
 	public void setAd(String ad) {
+
 		this.ad = ad;
 	}
 
@@ -84,13 +85,21 @@ public class MusteriYonetimi {
 	}
 
 	public void musteriEkle() {
+		System.out.print("Müþteri ismi giriniz: ");
+
+		String isim = scanner.nextLine();
+
+		musteriEkle(isim);
+	}
+
+	public void musteriEkle(String ad) {
 		this.setAd(ad);
 
 		try {
 			String sorgu = "INSERT INTO musteriler (isim) VALUES (?)";
 			PreparedStatement prepareStatement = mc.baglan().prepareStatement(sorgu);
 
-			prepareStatement.setString(1, ad);
+			prepareStatement.setString(1, getAd());
 
 			prepareStatement.execute();
 
@@ -102,17 +111,18 @@ public class MusteriYonetimi {
 		}
 	}
 
-	public void isimGuncelle() {
-		this.setAd(ad);
-		this.setId(id);
+	private void isimGuncelle(int idsi, String adi) {
+
+		this.setId(idsi);
+		this.setAd(adi);
+
 		try {
 
 			String sorgu = "UPDATE musteriler SET isim =? WHERE musteri_id =?";
 			PreparedStatement prepareStatement = mc.baglan().prepareStatement(sorgu);
 
-			prepareStatement.setInt(2, id);
-
-			prepareStatement.setString(1, ad);
+			prepareStatement.setString(1, getAd());
+			prepareStatement.setInt(2, getId());
 
 			prepareStatement.execute();
 
@@ -120,7 +130,29 @@ public class MusteriYonetimi {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.toString());
+		} finally {
+			try {
+				mc.baglan().close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+	}
+
+	public void isimGuncelle() {
+
+		System.out.print("Güncelleneck Müþteri id girin: ");
+		int idGuncellenecek = scanner.nextInt();
+
+		System.out.print("Yeni isim girin: ");
+		String isim = scanner.next();
+		System.out.println(isim);
+
+		System.out.println();
+
+		isimGuncelle(idGuncellenecek, isim);
+
 	}
 }//

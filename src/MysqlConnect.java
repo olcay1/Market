@@ -2,8 +2,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MysqlConnect {
-	public Connection baglan() {
+public  class MysqlConnect {
+	public  Connection baglan() {
 		Connection con = null;
 
 		try {

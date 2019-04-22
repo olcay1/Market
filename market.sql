@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `market` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `market`;
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
 -- Host: localhost    Database: market
@@ -33,7 +35,7 @@ CREATE TABLE `musteri_urun` (
   KEY `fk_musteri_urun_musteri` (`musteri_id`),
   CONSTRAINT `fk_musteri_urun` FOREIGN KEY (`urun_id`) REFERENCES `urunler` (`urun_id`),
   CONSTRAINT `fk_musteri_urun_musteri` FOREIGN KEY (`musteri_id`) REFERENCES `musteriler` (`musteri_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +44,7 @@ CREATE TABLE `musteri_urun` (
 
 LOCK TABLES `musteri_urun` WRITE;
 /*!40000 ALTER TABLE `musteri_urun` DISABLE KEYS */;
-INSERT INTO `musteri_urun` VALUES (1,1,1,2.00,1),(2,1,2,2.00,2),(3,1,3,2.00,3),(4,2,1,3.00,1),(5,2,2,2.00,2),(6,3,4,1.00,1),(7,2,3,5.59,2000);
+INSERT INTO `musteri_urun` VALUES (1,1,1,2.00,1),(2,1,2,2.00,2),(3,1,3,2.00,3),(4,2,1,3.00,1),(5,2,2,2.00,2),(6,3,4,1.00,1),(7,2,3,5.59,2000),(8,3,5,5.00,2000),(9,3,4,1.00,2000),(10,2,6,8.00,2000),(11,3,4,1.00,2000),(12,3,4,1.00,2000),(13,5,10,4.00,2000),(14,3,4,1.00,2000),(15,2,2,2.34,2000),(16,3,3,5.59,2000),(17,3,4,1.00,3),(18,2,1,2.00,1544),(19,2,3,5.59,1684);
 /*!40000 ALTER TABLE `musteri_urun` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +84,7 @@ CREATE TABLE `urunler` (
   `urun_ad` varchar(45) DEFAULT NULL,
   `urun_fiyat` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`urun_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +93,7 @@ CREATE TABLE `urunler` (
 
 LOCK TABLES `urunler` WRITE;
 /*!40000 ALTER TABLE `urunler` DISABLE KEYS */;
-INSERT INTO `urunler` VALUES (1,'cola',3.00),(2,'ekmek',2.34),(3,'fanta',5.59),(4,'gofret',1.00),(5,'cikolata',5.00),(6,'cay',8.00),(7,'salca',10.55),(8,'alo',4.00),(9,'omo',2.00),(10,'pril',4.00);
+INSERT INTO `urunler` VALUES (1,'cola',2.00),(2,'ekmek',2.34),(3,'fanta',5.59),(4,'gofret',1.00),(5,'cikolata',5.00),(6,'cay',8.00),(7,'salca',10.55),(8,'alo',4.00),(9,'omo',2.00),(10,'pril',4.00),(11,'kahve',12.00),(12,'şeker',333.00);
 /*!40000 ALTER TABLE `urunler` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -104,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-22 13:33:40
+-- Dump completed on 2019-04-22 17:01:47

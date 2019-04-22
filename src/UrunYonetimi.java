@@ -77,7 +77,7 @@ public class UrunYonetimi {
 			System.out.println("------------------------------------------");
 
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.out.println("Hata oluþtu." + e.getMessage());
 		} finally {
 			try {
 				mc.baglan().close();
@@ -118,9 +118,10 @@ public class UrunYonetimi {
 	}
 
 	public void urunEkle() {
-		System.out.print("ürün adý: ");
-		ad = scanner.next();
-		System.out.print("ürün fiyatý: ");
+		System.out.print("Ürün adý: ");
+		ad = scanner.nextLine();
+		System.out.println();
+		System.out.print("Ürün fiyatý: ");
 		fiyat = scanner.nextFloat();
 		urunEkle(ad, fiyat);
 
@@ -128,7 +129,7 @@ public class UrunYonetimi {
 
 	public void fiyatGuncelle() {
 		try {
-			System.out.print("ürün Id: ");
+			System.out.print("Ürün Id: ");
 			id = scanner.nextInt();
 
 			System.out.print("Yeni Fiyatý: ");

@@ -172,7 +172,7 @@ public class satisYonetimi {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 	}
 }

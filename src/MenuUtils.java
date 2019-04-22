@@ -1,8 +1,9 @@
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class MenuUtils {
-
+	static Scanner scan = new Scanner(System.in);
 	static MusteriYonetimi my = new MusteriYonetimi();
 	static UrunYonetimi uy = new UrunYonetimi();
 	static Random rnd = new Random();
@@ -10,7 +11,7 @@ public class MenuUtils {
 	public static void menuSecim() {
 		anaMenuYazdir();
 
-		Scanner scan = new Scanner(System.in);
+		
 
 		int secim;
 
@@ -37,7 +38,7 @@ public class MenuUtils {
 				System.exit(0);
 				break;
 			default:
-				System.out.println("Geçerli bir seçim yapýnýz");
+				System.out.println("Geçerli bir seçim yapýnýz!!!!!!!");
 				menuSecim();
 
 			}
@@ -86,6 +87,7 @@ public class MenuUtils {
 		System.out.println("5.Ana Menü");
 		System.out.println("--------------");
 		System.out.print("Seçiminiz:");
+
 
 	}
 
@@ -148,21 +150,13 @@ public class MenuUtils {
 				if (secim == 1) {
 					my.listele(0);
 				} else if (secim == 2) {
-					System.out.print("Müþteri ismi giriniz:");
 
-					my.setAd(scan.next());
+					
 					my.musteriEkle();
 
 				} else if (secim == 3) {
 					my.listele(0);
-					System.out.print("Güncelleneck Müþteri id girin:");
-					my.setId(scan.nextInt());
-
-					System.out.print("Yeni isim girin:");
-					my.setAd(scan.next());
 					my.isimGuncelle();
-
-					my.listele(0);
 
 				} else if (secim == 5) {
 					break;
@@ -175,6 +169,8 @@ public class MenuUtils {
 
 	}
 
+
+	
 	public static void satisYonetimiWhile() {
 		try {
 			System.out.println();
@@ -195,17 +191,17 @@ public class MenuUtils {
 
 					my.listele(0);
 					System.out.println();
-					System.out.print("Müþteri ID giriniz:");
+					System.out.print("Müþteri ID giriniz: ");
 
 					sy.musteriUrunListele(scan.nextInt());
 					System.out.println();
 				} else if (secim == 2) {
 					my.listele(0);
-					System.out.print("Müþteri ID giriniz:");
+					System.out.print("Müþteri ID giriniz: ");
 					sy.setMusteriId(scan.nextInt());
 
 					uy.listele();
-					System.out.print("Ürün ID giriniz:");
+					System.out.print("Ürün ID giriniz: ");
 
 					sy.setUrunId(scan.nextInt());
 
