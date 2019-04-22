@@ -1,9 +1,11 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class MenuUtils {
 
 	static MusteriYonetimi my = new MusteriYonetimi();
 	static UrunYonetimi uy = new UrunYonetimi();
+	static Random rnd = new Random();
 
 	public static void menuSecim() {
 		anaMenuYazdir();
@@ -91,9 +93,8 @@ public class MenuUtils {
 		System.out.println("--------------");
 		System.out.println("1.Listele");
 		System.out.println("2.Ekle");
-		System.out.println("3.Güncelle");
-		System.out.println("4.Sil");
-		System.out.println("5.Ana Menü");
+		System.out.println("3.Müþteri Ürünleri");
+		System.out.println("4.Ana Menü");
 		System.out.println("--------------");
 		System.out.print("Seçiminiz:");
 
@@ -143,7 +144,7 @@ public class MenuUtils {
 				secim = scan.nextInt();
 
 				if (secim == 1) {
-					my.listele();
+					my.listele(0);
 				} else if (secim == 2) {
 					System.out.print("Müþteri ismi giriniz:");
 
@@ -151,7 +152,7 @@ public class MenuUtils {
 					my.musteriEkle();
 
 				} else if (secim == 3) {
-					my.listele();
+					my.listele(0);
 					System.out.print("Güncelleneck Müþteri id girin:");
 					my.setId(scan.nextInt());
 
@@ -159,7 +160,7 @@ public class MenuUtils {
 					my.setAd(scan.next());
 					my.isimGuncelle();
 
-					my.listele();
+					my.listele(0);
 
 				} else if (secim == 5) {
 					break;
@@ -182,13 +183,22 @@ public class MenuUtils {
 			int secim;
 			while (true) {
 
+				System.out.println();
 				MenuUtils.satisYonetimi();
 				secim = scan.nextInt();
 
 				if (secim == 1) {
-					sy.listele();
+					sy.listele(0);
+				} else if (secim == 3) {
+
+					my.listele(0);
+					System.out.println();
+					System.out.print("Müþteri ID giriniz:");
+
+					sy.musteriUrunListele(scan.nextInt());
+					System.out.println();
 				} else if (secim == 2) {
-					my.listele();
+					my.listele(0);
 					System.out.print("Müþteri ID giriniz:");
 					sy.setMusteriId(scan.nextInt());
 
@@ -196,30 +206,19 @@ public class MenuUtils {
 					System.out.print("Ürün ID giriniz:");
 
 					sy.setUrunId(scan.nextInt());
+
 					uy.urunDetay(sy.getUrunId());
 					sy.setUrunFiyat(uy.getFiyat());
-					System.out.println(uy.getAd());
-					sy.setFisNo(2000);
-
-					System.out.println("musteriid=" + my.getId());
+					sy.setFisNo((my.listele(sy.getMusteriId())) * rnd.nextInt(1000));
+					System.out.println("Eklediginiz ürün= " + uy.getAd());
+					// System.out.println("musteriid=" + my.getId());
 
 					sy.satisEkle();
 
 					// my.setAd(scan.next());
 					// my.musteriEkle();
 
-				} else if (secim == 3) {
-					sy.listele();
-					System.out.print("Güncelleneck Müþteri id girin:");
-					// my.setId(scan.nextInt());
-
-					System.out.print("Yeni isim girin:");
-					// my.setAd(scan.next());
-					// my.isimGuncelle();
-
-					sy.listele();
-
-				} else if (secim == 5) {
+				} else if (secim == 4) {
 					break;
 
 				}

@@ -55,7 +55,7 @@ public class satisYonetimi {
 		this.fisNo = fisNo;
 	}
 
-	public void listele() {
+	public void listele(int tek) {
 
 		try {
 			// Class.forName("com.mysql.cj.jdbc.Driver");
@@ -65,10 +65,62 @@ public class satisYonetimi {
 			System.out.format("|%2s| %10s | %10s| %3s | %2s |", "ID", "MÜÞTERÝ", "ÜRÜN", "FÝYAT", "FÝÞ NO");
 			System.out.println();
 			System.out.println("-----------------------------------------------");
+			ResultSet rs = null;
+			if (tek == 1) {
 
-			ResultSet rs = stmt.executeQuery("SELECT musteri_urun_id,m.isim,u.urun_ad,mu.urun_fiyat,mu.fis_no "
+				rs = stmt.executeQuery("SELECT musteri_urun_id,m.isim,u.urun_ad,mu.urun_fiyat,mu.fis_no "
+						+ "FROM musteri_urun mu inner join musteriler m inner join urunler  u "
+						+ "on mu.musteri_id=m.musteri_id and mu.urun_id= u.urun_id "
+						+ " order by mu.musteri_urun_id desc limit 1");
+			} else {
+				rs = stmt.executeQuery("SELECT musteri_urun_id,m.isim,u.urun_ad,mu.urun_fiyat,mu.fis_no "
+						+ "FROM musteri_urun mu inner join musteriler m inner join urunler  u "
+						+ "on mu.musteri_id=m.musteri_id and mu.urun_id= u.urun_id "
+						+ " order by mu.musteri_urun_id desc");
+
+			}
+
+			while (rs.next()) {
+				int musteri_urun_id = rs.getInt(1);
+				String musteriAdi = rs.getString(2);
+				String urunAdi = rs.getString(3);
+				float urunFiyat = rs.getFloat(4);
+				int fisNo = rs.getInt(5);
+
+				System.out.format("|%2s| %10s | %10s| %5s | %2s |", musteri_urun_id, musteriAdi, urunAdi, urunFiyat,
+						fisNo);
+
+				System.out.println();
+			}
+			System.out.println("-----------------------------------------------");
+
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				mc.baglan().close();
+			} catch (SQLException e) {
+				System.out.println("Hata oluþtu." + e.getMessage());
+			}
+		}
+	}
+
+	public void musteriUrunListele(int idver) {
+
+		try {
+			// Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Statement stmt = mc.baglan().createStatement();
+			System.out.println("-----------------------------------------------");
+			System.out.format("|%2s| %10s | %10s| %3s | %2s |", "ID", "MÜÞTERÝ", "ÜRÜN", "FÝYAT", "FÝÞ NO");
+			System.out.println();
+			System.out.println("-----------------------------------------------");
+			ResultSet rs = null;
+
+			rs = stmt.executeQuery("SELECT musteri_urun_id,m.isim,u.urun_ad,mu.urun_fiyat,mu.fis_no "
 					+ "FROM musteri_urun mu inner join musteriler m inner join urunler  u "
-					+ "on mu.musteri_id=m.musteri_id and mu.urun_id= u.urun_id");
+					+ "on mu.musteri_id=m.musteri_id and mu.urun_id= u.urun_id " + "where m.musteri_id =" + idver + ""
+					+ " order by mu.musteri_urun_id desc");
 
 			while (rs.next()) {
 				int musteri_urun_id = rs.getInt(1);
@@ -115,7 +167,7 @@ public class satisYonetimi {
 
 			prepareStatement.execute();
 
-			listele();
+			listele(1);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

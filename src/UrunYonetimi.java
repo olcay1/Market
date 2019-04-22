@@ -128,9 +128,12 @@ public class UrunYonetimi {
 	public void fiyatGuncelle() {
 		System.out.print("ürün Id: ");
 		id = scanner.nextInt();
+
 		System.out.print("Yeni Fiyatý: ");
 		fiyat = scanner.nextFloat();
 		fiyatGuncelle(id, fiyat);
+
+		System.out.println("Fiyat güncellendi");
 
 	}
 

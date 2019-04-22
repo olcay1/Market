@@ -11,14 +11,14 @@ public class MusteriYonetimi {
 
 	public int secim(int sec) {
 		if (sec == 1) {
-			listele();
+			listele(0);
 		} else if (sec == 2) {
 
 			musteriEkle();
 
 		} else if (sec == 3) {
 
-			listele();
+			listele(0);
 			isimGuncelle();
 
 		}
@@ -45,7 +45,7 @@ public class MusteriYonetimi {
 		this.ad = ad;
 	}
 
-	public void listele() {
+	public int listele(int idbul) {
 
 		try {
 			// Class.forName("com.mysql.cj.jdbc.Driver");
@@ -58,10 +58,13 @@ public class MusteriYonetimi {
 
 			ResultSet rs = stmt.executeQuery("select * from musteriler");
 			while (rs.next()) {
-				int musteriýd = rs.getInt(1);
+				int musteriId = rs.getInt(1);
+				if (musteriId == idbul) {
+					return musteriId;
+				}
 				String musteriAdi = rs.getString(2);
 
-				System.out.format("|%2s| %10s |", musteriýd, musteriAdi);
+				System.out.format("|%2s| %10s |", musteriId, musteriAdi);
 
 				System.out.println();
 			}
@@ -76,6 +79,7 @@ public class MusteriYonetimi {
 				System.out.println("Hata oluþtu." + e.getMessage());
 			}
 		}
+		return 1;
 	}
 
 	public void musteriEkle() {
@@ -89,7 +93,7 @@ public class MusteriYonetimi {
 
 			prepareStatement.execute();
 
-			listele();
+			listele(0);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -111,7 +115,7 @@ public class MusteriYonetimi {
 
 			prepareStatement.execute();
 
-			listele();
+			listele(0);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
