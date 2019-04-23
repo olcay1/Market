@@ -5,20 +5,23 @@ Market Otomasyonu
 | 1.Ürün Yönetimi |
 -------------------
 ürün ekleme
-ürün silme
 ürün listeleme
 ürün fiyat deðiþtirme
+
 
 ----------------------
 | 2.Müþteri Yönetimi |
 ----------------------
-müþteri ekleme
-müþteri silme
 müþteri listeleme
+müþteri ekleme
+müþteri isim deðiþtirme
 
 ---------------------------
 | 3.Müþteriye ürün ekleme |
 ---------------------------
+listeleme
+Ekleme
+Müþteriye ürün ekleme
 
 --------------------------
 | Mysql market veritabaný |
@@ -26,8 +29,8 @@ müþteri listeleme
 urunler
 	urun_id
 	urun_ad
-	urun_fiyat-+
-  PRIMARY KEY urun_id
+	urun_fiyat
+	PRIMARY KEY urun_id
   
 musteriler
 	musteri_id
@@ -38,6 +41,8 @@ musteri_urun
 	musteri_urun_id
 	musteri_id
 	urun_id
+	urun_fiyat
+	fis_no
 	PRIMARY KEY musteri_urun_id
 	fk_musteri_urun urun_id
 	fk_musteri_urun_musteri musteri_id
